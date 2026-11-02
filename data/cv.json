@@ -1,0 +1,28 @@
+{
+  "pdf": "",
+  "groups": [
+    {
+      "title": "Research",
+      "items": [
+        {
+          "when": "Since 20XX",
+          "what": "PhD researcher",
+          "where": "Institute for AI Safety and Security, German Aerospace Center (DLR), Sankt Augustin",
+          "text": "Weakspot identification, data-centric training and safety assessment of machine learning models."
+        }
+      ]
+    },
+    {
+      "title": "Education",
+      "items": [
+        { "when": "Years", "what": "Degree, subject", "where": "University", "text": "Placeholder: replace in data/cv.json." }
+      ]
+    },
+    {
+      "title": "Experience",
+      "items": [
+        { "when": "Years", "what": "Position", "where": "Organisation", "text": "Placeholder: replace in data/cv.json." }
+      ]
+    }
+  ]
+}

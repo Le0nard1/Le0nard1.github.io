@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Advanced Methods for Weakspot Identification in Regression Models: From Standard Detectors to Structured Ensembles",
+    "authors": ["Leonard Schroven", "Elena Hoemann", "Frank Köster", "Sven Hallerbach"],
+    "venue": "IEEE International Conference on Tools with Artificial Intelligence (ICTAI)",
+    "year": 2026,
+    "status": "Accepted",
+    "abstract": "Weakspots, the compact regions of input space where a trained regression model performs poorly, arise where the training data do not sufficiently cover the information density required in that region, and locating them in a trained model is a prerequisite for safe deployment in domains where failure is safety-critical. This paper investigates how well established distribution-approximation methods identify weakspots, and how they can be adapted and combined to identify them better. We evaluate and analyze eight base detection methods, spanning Gaussian processes, kernel interpolation, local averaging, quantile regression, and extreme-value statistics, in a controlled experimental setup in which a weakspot of known location and size is induced as ground truth. Each detection is scored along two complementary axes: the centroid distance, which measures how accurately the weakspot is located, and the intersection-over-union, which measures how accurately its shape and extent are described. The evaluation reveals a structural asymmetry: localizer methods such as quantile regression locate the center precisely but cannot reproduce the shape, whereas landscape estimators such as Gaussian processes capture the shape but blur the center. Motivated by this dichotomy, we design seven structured ensembles that combine a localizer with a landscape estimator through additive anchoring, multiplicative gating, geometric consensus, variance-weighted mixtures, disagreement amplification, and two-stage local refitting. One ensemble, the geometric mean of an extreme-value localizer and a Gaussian process, ranks first overall: under a paired per-configuration analysis it significantly outperforms seven of the eight base methods and retains a small positive margin over the eighth. The comparison isolates the decisive design choice: ensembles that consume the localizer's full surface are robust, whereas ensembles that reduce it to a single point estimate inherit its errors. These findings provide concrete guidance for constructing reliable weakspot identification algorithms for regression models in safety-critical applications.",
+    "links": [
+      { "label": "PDF", "url": "papers/schroven2026_ictai.pdf" },
+      { "label": "DOI", "url": "" },
+      { "label": "Code", "url": "" }
+    ]
+  }
+]

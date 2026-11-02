@@ -1,0 +1,9 @@
+[
+  {
+    "when": "Term, year",
+    "title": "Course or seminar title",
+    "role": "Teaching assistant",
+    "where": "University",
+    "text": "Placeholder: replace with a real entry in data/teaching.json."
+  }
+]

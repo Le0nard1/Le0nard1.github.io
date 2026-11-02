@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leonard Schroven</title>
+  <meta name="description" content="Leonard Schroven: research on weakspots of machine learning models, data-centric training and safety assessment.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/theme.css">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#intro">Leonard Schroven</a>
+      <nav class="nav" aria-label="Sections">
+        <a href="#intro">Intro</a>
+        <a href="#environment">Research Environment</a>
+        <a href="#publications">Publications</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#cv">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="intro" class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">PhD researcher · AI safety</p>
+          <h1>Finding where machine learning models fall short</h1>
+          <p class="lead">
+            I am a PhD researcher at the Institute for AI Safety and Security of the German
+            Aerospace Center (DLR) in Sankt Augustin. My research asks where a trained model is
+            weak, rather than how good it is on average.
+          </p>
+          <p>
+            Model errors are not spread evenly across the input space but concentrate in
+            compact regions, which I call weakspots. I develop statistical methods to locate
+            them, and use them in two ways: to direct new training data to where a model is
+            weak, and to direct tests to where it may be unsafe.
+          </p>
+          <div class="links" id="profile-links"></div>
+        </div>
+        <aside class="card focus">
+          <h2>Research focus</h2>
+          <ul class="ticks">
+            <li>Weakspot identification in regression models</li>
+            <li>Data-centric training guided by model weakness</li>
+            <li>Statistical testing and safety assessment of ML models</li>
+            <li>Uncertainty quantification and error landscapes</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="environment">
+      <div class="wrap">
+        <h2 class="section-title">Research Environment</h2>
+        <p class="section-lead">
+          My experiments run in one shared environment: an interactive Streamlit application
+          for configuring, running and inspecting experiments, backed by Python engines that
+          run large sweeps from the terminal.
+        </p>
+        <div class="grid two" id="environment-list"></div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="wrap">
+        <h2 class="section-title">Publications</h2>
+        <div id="publication-list" class="stack"></div>
+      </div>
+    </section>
+
+    <section id="teaching">
+      <div class="wrap">
+        <h2 class="section-title">Teaching</h2>
+        <div id="teaching-list" class="stack"></div>
+      </div>
+    </section>
+
+    <section id="cv">
+      <div class="wrap">
+        <h2 class="section-title">CV</h2>
+        <div id="cv-download"></div>
+        <div id="cv-list" class="timeline"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">© <span id="year"></span> Leonard Schroven</div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>

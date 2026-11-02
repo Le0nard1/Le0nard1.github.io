@@ -1,0 +1,28 @@
+/* Theme "ocean", written by tools/set_theme.py. Edit themes/themes.json or run
+   the tool instead of editing this file. */
+:root {
+  --bg: #fafcfd;
+  --surface: #eff6f8;
+  --text: #021017;
+  --muted: #606a6e;
+  --border: #d7dbdd;
+  --primary: #0b6e99;
+  --accent: #e07a1f;
+  --on-primary: #ffffff;
+  --on-accent: #021017;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #01090d;
+    --surface: #02151e;
+    --text: #fbfdfe;
+    --muted: #a3a8aa;
+    --border: #252b2f;
+    --primary: #4892b2;
+    --accent: #e58e41;
+    --on-primary: #01090d;
+    --on-accent: #01090d;
+  }
+}

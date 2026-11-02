@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Theme Lab</title>
+  <style>
+    :root { --ui-bg: #f6f7f9; --ui-panel: #ffffff; --ui-text: #1c2430; --ui-muted: #5d6877; --ui-line: #dde2e8; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --ui-bg: #14181d; --ui-panel: #1c2128; --ui-text: #e6e9ee; --ui-muted: #9aa4b1; --ui-line: #2c333c; }
+    }
+    :root[data-theme="dark"] { --ui-bg: #14181d; --ui-panel: #1c2128; --ui-text: #e6e9ee; --ui-muted: #9aa4b1; --ui-line: #2c333c; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--ui-bg); color: var(--ui-text); font: 14px/1.5 system-ui, "Segoe UI", sans-serif; }
+    .layout { display: grid; grid-template-columns: 320px 1fr; height: 100vh; }
+    @media (max-width: 800px) { .layout { grid-template-columns: 1fr; height: auto; } iframe { height: 80vh; } }
+    .panel { background: var(--ui-panel); border-right: 1px solid var(--ui-line); padding: 16px; overflow-y: auto; }
+    h1 { font-size: 18px; margin: 0 0 4px; }
+    p { color: var(--ui-muted); margin: 0 0 12px; }
+    label { display: grid; grid-template-columns: 1fr 44px 86px; gap: 8px; align-items: center; margin: 6px 0; }
+    input[type=color] { width: 44px; height: 28px; border: 1px solid var(--ui-line); border-radius: 6px; padding: 0; background: none; }
+    input[type=text], select, textarea { width: 100%; font: inherit; padding: 6px 8px; border: 1px solid var(--ui-line); border-radius: 6px; background: var(--ui-bg); color: var(--ui-text); }
+    textarea { height: 120px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; }
+    button { font: inherit; padding: 7px 12px; border-radius: 6px; border: 1px solid var(--ui-line); background: var(--ui-bg); color: var(--ui-text); cursor: pointer; }
+    .row { display: flex; gap: 8px; margin: 10px 0; flex-wrap: wrap; }
+    .ratio { font-size: 12px; color: var(--ui-muted); }
+    .bad { color: #c62828; font-weight: 600; }
+    iframe { width: 100%; height: 100%; border: 0; background: #fff; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="panel">
+      <h1>Theme Lab</h1>
+      <p>Pick colours and watch the site change. Contrast ratios below 4.5:1 are marked. Copy
+         the result into <code>tools/set_theme.py add</code> to publish it.</p>
+      <select id="preset"><option value="">Load a stored theme…</option></select>
+      <div id="pickers"></div>
+      <div class="row"><button id="copy">Copy command</button><button id="reset">Reset</button></div>
+      <textarea id="out" readonly></textarea>
+    </div>
+    <iframe id="site" src="index.html" title="Site preview"></iframe>
+  </div>
+  <script>
+    const ROLES = ["bg", "surface", "text", "muted", "border", "primary", "accent", "on-primary", "on-accent"];
+    const PAIRS = { text: "bg", muted: "bg", primary: "bg", "on-primary": "primary", "on-accent": "accent" };
+    const state = {};
+    let stored = {};
+
+    const lum = h => {
+      const v = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255)
+        .map(c => c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+      return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2];
+    };
+    const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+
+    function apply() {
+      const doc = document.getElementById("site").contentDocument;
+      if (doc) for (const r of ROLES) doc.documentElement.style.setProperty(`--${r}`, state[r]);
+      for (const r of ROLES) {
+        document.getElementById(`hex-${r}`).value = state[r];
+        document.getElementById(`col-${r}`).value = state[r];
+        const out = document.getElementById(`ratio-${r}`);
+        if (PAIRS[r]) {
+          const v = ratio(state[r], state[PAIRS[r]]);
+          out.textContent = `${v.toFixed(1)}:1 on ${PAIRS[r]}`;
+          out.className = "ratio" + (v < 4.5 ? " bad" : "");
+        }
+      }
+      const spec = ROLES.map(r => `${r}=${state[r]}`).join(",");
+      document.getElementById("out").value = `python tools/set_theme.py add mytheme "${spec}" --use`;
+    }
+
+    function build() {
+      document.getElementById("pickers").innerHTML = ROLES.map(r => `
+        <label>${r}<input type="color" id="col-${r}"><input type="text" id="hex-${r}"></label>
+        <div class="ratio" id="ratio-${r}"></div>`).join("");
+      for (const r of ROLES) {
+        document.getElementById(`col-${r}`).addEventListener("input", e => { state[r] = e.target.value; apply(); });
+        document.getElementById(`hex-${r}`).addEventListener("change", e => {
+          if (/^#[0-9a-fA-F]{6}$/.test(e.target.value)) { state[r] = e.target.value.toLowerCase(); apply(); }
+        });
+      }
+    }
+
+    function fromSite() {
+      const doc = document.getElementById("site").contentDocument;
+      const cs = getComputedStyle(doc.documentElement);
+      for (const r of ROLES) state[r] = cs.getPropertyValue(`--${r}`).trim();
+      apply();
+    }
+
+    build();
+    document.getElementById("site").addEventListener("load", fromSite);
+    document.getElementById("reset").onclick = () => {
+      const doc = document.getElementById("site").contentDocument;
+      for (const r of ROLES) doc.documentElement.style.removeProperty(`--${r}`);
+      fromSite();
+    };
+    document.getElementById("copy").onclick = () => {
+      const t = document.getElementById("out");
+      t.select();
+      try { navigator.clipboard.writeText(t.value); } catch { document.execCommand("copy"); }
+    };
+    fetch("themes/themes.json", { cache: "no-cache" }).then(r => r.json()).then(s => {
+      stored = s.themes;
+      document.getElementById("preset").innerHTML += Object.keys(stored).map(n => `<option>${n}</option>`).join("");
+    }).catch(() => {});
+    document.getElementById("preset").onchange = e => {
+      const t = stored[e.target.value];
+      if (t) { Object.assign(state, t.light); apply(); }
+    };
+  </script>
+</body>
+</html>

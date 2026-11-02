@@ -1,0 +1,33 @@
+[
+  {
+    "kind": "Streamlit application",
+    "title": "Weakspot Research Environment",
+    "text": "An interactive application for studying weakspots of regression models: configure an experiment, run it, and inspect the detected weakspots and error landscapes, with a companion page that aggregates the results of each sweep.",
+    "features": [
+      "Weakspot identification with standard detectors and structured ensembles",
+      "Data-selective training guided by detected weakspots",
+      "Iterated selection over rounds of retraining",
+      "Real-data examples and result dashboards"
+    ],
+    "image": "",
+    "links": [
+      { "label": "Code", "url": "" }
+    ],
+    "note": "The code will be released once the papers under review are decided."
+  },
+  {
+    "kind": "Web interface",
+    "title": "Online demonstrator",
+    "text": "A hosted version of the environment that runs in the browser without installation, for exploring weakspots on example problems.",
+    "features": [
+      "No installation required",
+      "Example problems with known weakspots",
+      "Interactive error landscapes"
+    ],
+    "image": "",
+    "links": [
+      { "label": "Open demonstrator", "url": "" }
+    ],
+    "note": "Coming soon."
+  }
+]
