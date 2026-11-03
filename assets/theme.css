@@ -1,28 +1,28 @@
-/* Theme "ocean", written by tools/set_theme.py. Edit themes/themes.json or run
+/* Theme "clothesline", written by tools/set_theme.py. Edit themes/themes.json or run
    the tool instead of editing this file. */
 :root {
-  --bg: #fafcfd;
-  --surface: #eff6f8;
-  --text: #021017;
-  --muted: #606a6e;
-  --border: #d7dbdd;
-  --primary: #0b6e99;
-  --accent: #e07a1f;
+  --bg: #faf5f0;
+  --surface: #f3e9e0;
+  --text: #4a4034;
+  --muted: #746e65;
+  --border: #e2cfc0;
+  --primary: #611e27;
+  --accent: #61a0a9;
   --on-primary: #ffffff;
-  --on-accent: #021017;
+  --on-accent: #4a4034;
   color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #01090d;
-    --surface: #02151e;
-    --text: #fbfdfe;
-    --muted: #a3a8aa;
-    --border: #252b2f;
-    --primary: #4892b2;
-    --accent: #e58e41;
-    --on-primary: #01090d;
-    --on-accent: #01090d;
+    --bg: #29231d;
+    --surface: #30221e;
+    --text: #fbf8f4;
+    --muted: #b2ada9;
+    --border: #47423d;
+    --primary: #a9848a;
+    --accent: #79aeb6;
+    --on-primary: #29231d;
+    --on-accent: #29231d;
   }
 }

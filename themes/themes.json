@@ -1,5 +1,5 @@
 {
-  "active": "ocean",
+  "active": "clothesline",
   "themes": {
     "slate": {
       "input": "#3d5a80,#ee6c4d",
@@ -124,6 +124,31 @@
         "accent": "#e58e41",
         "on-primary": "#01090d",
         "on-accent": "#01090d"
+      }
+    },
+    "clothesline": {
+      "input": "bg=#faf5f0,surface=#f3e9e0,text=#4a4034,border=#e2cfc0,primary=#611e27,accent=#61a0a9",
+      "light": {
+        "bg": "#faf5f0",
+        "surface": "#f3e9e0",
+        "text": "#4a4034",
+        "muted": "#746e65",
+        "border": "#e2cfc0",
+        "primary": "#611e27",
+        "accent": "#61a0a9",
+        "on-primary": "#ffffff",
+        "on-accent": "#4a4034"
+      },
+      "dark": {
+        "bg": "#29231d",
+        "surface": "#30221e",
+        "text": "#fbf8f4",
+        "muted": "#b2ada9",
+        "border": "#47423d",
+        "primary": "#a9848a",
+        "accent": "#79aeb6",
+        "on-primary": "#29231d",
+        "on-accent": "#29231d"
       }
     }
   }
